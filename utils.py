@@ -11,8 +11,7 @@ def predict_xr(
     chunk_size=None,
     persist=False,
     proba=False,
-    clean=False,
-    return_input=False,
+    clean=False
 ):
     """
     Predict using a scikit-learn model on an xarray dataset.
@@ -99,12 +98,12 @@ def predict_xr(
         model = ParallelPostFit(model)
         with joblib.parallel_backend("dask"):
             output_xr = _predict_func(
-                model, input_xr, persist, proba, clean, return_input
+                model, input_xr, persist, proba, clean
             )
 
     else:
         output_xr = _predict_func(
-            model, input_xr, persist, proba, clean, return_input
+            model, input_xr, persist, proba, clean
         ).compute()
 
     return output_xr
