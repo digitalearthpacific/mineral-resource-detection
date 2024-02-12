@@ -1,4 +1,0 @@
-Method for GeoMads from tiles
-- Geomedians should be more statistically robust than cloudless mosaics. 
-- Looking into the GeoMAD approach but this is only available for Landsat at the moment. 
-- Will be retrofitted with Sentinel at a later date pending work from Alex. 
