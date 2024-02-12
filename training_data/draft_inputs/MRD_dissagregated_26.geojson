@@ -1,6 +1,6 @@
 {
 "type": "FeatureCollection",
-"name": "MRD_dissagregated_25",
+"name": "MRD_dissagregated_26",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "fid": 1, "index": 1, "id": "1", "x": "177.58868306261775", "y": "-17.726528354679946", "lulc_code": 2, "lulc_class": "forest", "layer": "MRD_dissagregated_20", "path": "X:\\MRD_Dev\\Labelled data\\Training data\\MRD_dissagregated_20.geojson|layername=MRD_dissagregated_20" }, "geometry": { "type": "Point", "coordinates": [ 177.588683062617747, -17.726528354679946 ] } },
