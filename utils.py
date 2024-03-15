@@ -144,7 +144,10 @@ def predict_xr(
 
         input_data = []
 
-        for var_name in input_xr.data_vars:
+        variables = list(input_xr.data_vars)
+        variables.sort()
+
+        for var_name in variables:
             input_data.append(input_xr[var_name])
 
         input_data_flattened = []
