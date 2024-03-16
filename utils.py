@@ -1,19 +1,44 @@
+import os
+
 import dask.array as da
 import joblib
 import xarray as xr
 from dask_ml.wrappers import ParallelPostFit
 from datacube.utils.geometry import assign_crs
-
-from xarray import Dataset
-from pystac_client import Client
+from geopandas import GeoDataFrame
 from odc.stac import load
-import os
-
+from pandas import Series
 from planetary_computer import sign_url
-
+from pystac_client import Client
+from xarray import Dataset
 
 DEP_CATALOG = "https://stac.staging.digitalearthpacific.org"
 MSPC_CATALOG = "https://planetarycomputer.microsoft.com/api/stac/v1/"
+
+
+def get_image_values(points: GeoDataFrame, data: Dataset) -> GeoDataFrame:
+    """Get values for each of the image bands at each of the points."""
+    # Reproject points to the same CRS as the data
+    points_projected = points.to_crs(data.odc.crs)
+
+    # Convert points geodataframe to a DataArray with x & y coords
+    points_da = points_projected.assign(
+        x=points_projected.geometry.x, y=points_projected.geometry.y
+    ).to_xarray()
+
+    # a dataframe or series (for a single point)
+    variables = (
+        data.sel(points_da[["x", "y"]], method="nearest")
+        .squeeze()
+        .compute()
+        .to_pandas()
+    )
+
+    if isinstance(variables, Series):
+        variables = variables.to_frame().transpose()
+        variables.index = points.index
+
+    return variables
 
 
 def load_data(
