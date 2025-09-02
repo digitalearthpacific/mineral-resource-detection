@@ -7,3 +7,5 @@ The DEP MRED Toolbox:
 3. Annual change detection to quantify areas of expansion and regeneration over mining areas.  
 
 ![MRED](https://github.com/digitalearthpacific/mineral-resource-detection/blob/main/MRED_overview.PNG?raw=true "Mineral Resource Extraction Detection (MRED) Tool in Digital Earth Pacific")
+
+![Uploading image.png…]()
